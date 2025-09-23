@@ -1,0 +1,48 @@
+<%- include('partials/header', { title: 'Your Cart' }) %>
+
+<h1>Your Cart</h1>
+
+<% if (!cart.totalQty) { %>
+  <p>Your cart is empty. <a href="/">Browse pizzas</a></p>
+<% } else { %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Pizza</th>
+        <th>Qty</th>
+        <th>Price (USD)</th>
+        <th>Subtotal</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% Object.values(cart.items).forEach(it => { %>
+        <tr>
+          <td><%= it.name %></td>
+          <td><%= it.qty %></td>
+          <td>$<%= (it.price_cents/100).toFixed(2) %></td>
+          <td>$<%= ((it.price_cents*it.qty)/100).toFixed(2) %></td>
+          <td>
+            <form method="POST" action="/cart/remove">
+              <input type="hidden" name="product_id" value="<%= it.id %>">
+              <button class="link danger">Remove</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3" class="right"><strong>Total</strong></td>
+        <td colspan="2"><strong>$<%= (cart.totalCents/100).toFixed(2) %></strong></td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <div class="actions">
+    <a class="btn ghost" href="/">Continue Shopping</a>
+    <a class="btn" href="/checkout">Proceed to Checkout</a>
+  </div>
+<% } %>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,22 @@
+<%- include('partials/header', { title: 'Order Confirmation' }) %>
+
+<h1>Thank you! Your order is confirmed.</h1>
+
+<p>Order ID: <strong>#<%= order.id %></strong></p>
+<p>Status: <strong><%= order.status %></strong></p>
+<p>Placed at: <%= order.created_at %></p>
+
+<h3>Items</h3>
+<ul class="list">
+  <% items.forEach(it => { %>
+    <li><%= it.quantity %> × <%= it.product_name %> — $<%= ((it.price_cents*it.quantity)/100).toFixed(2) %></li>
+  <% }) %>
+</ul>
+
+<p class="total">Total Paid: $<%= (order.total_cents/100).toFixed(2) %></p>
+
+<div class="actions">
+  <a class="btn" href="/">Back to Menu</a>
+</div>
+
+<%- include('partials/footer') %>

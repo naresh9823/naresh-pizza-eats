@@ -1,0 +1,30 @@
+<%- include('partials/header', { title: 'Checkout' }) %>
+
+<h1>Checkout</h1>
+
+<section class="two-col">
+  <form method="POST" action="/checkout" class="form">
+    <label>Full Name
+      <input type="text" name="name" required>
+    </label>
+    <label>Phone
+      <input type="text" name="phone" required>
+    </label>
+    <label>Address
+      <textarea name="address" rows="3" required></textarea>
+    </label>
+    <button type="submit" class="btn">Place Order</button>
+  </form>
+
+  <aside class="summary">
+    <h3>Order Summary</h3>
+    <ul class="list">
+      <% Object.values(cart.items).forEach(it => { %>
+        <li><%= it.qty %> × <%= it.name %> — $<%= ((it.price_cents*it.qty)/100).toFixed(2) %></li>
+      <% }) %>
+    </ul>
+    <p class="total">Total: $<%= (cart.totalCents/100).toFixed(2) %></p>
+  </aside>
+</section>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,19 @@
+<%- include('partials/header', { title: 'Create Account' }) %>
+
+<h1>Create Account</h1>
+<form method="POST" action="/signup" class="form">
+  <label>Name
+    <input type="text" name="name" required>
+  </label>
+  <label>Email
+    <input type="email" name="email" required>
+  </label>
+  <label>Password
+    <input type="password" name="password" required minlength="6">
+  </label>
+  <button type="submit" class="btn">Sign Up</button>
+</form>
+
+<p class="muted">Already have an account? <a href="/login">Login</a>.</p>
+
+<%- include('partials/footer') %>

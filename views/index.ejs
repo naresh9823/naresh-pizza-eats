@@ -1,0 +1,28 @@
+<%- include('partials/header', { title: 'Menu' }) %>
+
+<h1>Our Pizzas</h1>
+
+<div class="grid">
+  <% products.forEach(p => { %>
+    <article class="card">
+      <div class="thumb">
+        <img src="/images/<%= p.image || 'placeholder.jpg' %>" alt="<%= p.name %>" />
+      </div>
+      <div class="card-body">
+        <h3><%= p.name %></h3>
+        <p class="desc"><%= p.description %></p>
+        <div class="price-row">
+          <span class="price">Rs. <%= (p.price_cents/100 * 133).toFixed(0) %> NPR</span>
+          <small class="usd">(~ $<%= (p.price_cents/100).toFixed(2) %>)</small>
+        </div>
+        <form method="POST" action="/cart/add" class="inline">
+          <input type="hidden" name="product_id" value="<%= p.id %>">
+          <input type="number" name="qty" value="1" min="1" class="qty-input">
+          <button type="submit" class="btn">Add to Cart</button>
+        </form>
+      </div>
+    </article>
+  <% }) %>
+</div>
+
+<%- include('partials/footer') %>

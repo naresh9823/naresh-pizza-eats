@@ -1,0 +1,24 @@
+{
+  "name": "naresh-pizza-eats",
+  "version": "1.0.0",
+  "description": "Full pizza shop with auth, cart, checkout, orders, and admin dashboard",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "db:reset": "node src/db/seed.js"
+  },
+  "dependencies": {
+    "bcryptjs": "2.4.3",
+    "better-sqlite3": "9.4.3",
+    "better-sqlite3-session-store": "^0.1.0",
+    "ejs": "3.1.10",
+    "express": "4.19.2",
+    "express-session": "1.18.0",
+    "method-override": "3.0.0",
+    "morgan": "1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "3.1.7"
+  }
+}
